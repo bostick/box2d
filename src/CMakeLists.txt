@@ -51,6 +51,8 @@ set(BOX2D_SOURCE_FILES
 	wheel_joint.c
 	world.c
 	world.h
+
+	logging.cpp
 )
 
 set(BOX2D_API_FILES
