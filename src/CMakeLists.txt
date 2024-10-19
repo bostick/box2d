@@ -1,10 +1,11 @@
 
 FetchContent_Declare(common
-	GIT_REPOSITORY
-    https://github.com/bostick/common.git
-  GIT_TAG
-    v0.3.0
-  GIT_SHALLOW 1
+	# GIT_REPOSITORY
+  #   https://github.com/bostick/common.git
+  # GIT_TAG
+  #   v0.3.0
+  # GIT_SHALLOW 1
+  SOURCE_DIR /Users/brenton/development/github/common
 )
 FetchContent_MakeAvailable(common)
 
