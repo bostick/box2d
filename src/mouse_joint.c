@@ -100,8 +100,8 @@ void b2PrepareMouseJoint( b2JointSim* base, b2StepContext* context )
 
 	joint->linearSoftness = b2MakeSoft( joint->hertz, joint->dampingRatio, context->h );
 
-	float angularHertz = 0.5f;
-	float angularDampingRatio = 0.1f;
+	float angularHertz = 3.5f;
+	float angularDampingRatio = 2.1f;
 	joint->angularSoftness = b2MakeSoft( angularHertz, angularDampingRatio, context->h );
 
 	b2Vec2 rB = joint->anchorB;
