@@ -206,3 +206,32 @@ install(
   DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/box2d"
 )
 
+
+if(SANITIZE)
+    if(${SANITIZE} STREQUAL "ubsan")
+        target_compile_options(box2d
+        	PRIVATE
+        		-fsanitize=undefined -fno-sanitize-recover=undefined
+        )
+        target_link_options(box2d
+        	PRIVATE
+        		-fsanitize=undefined -fno-sanitize-recover=undefined
+        )
+    endif()
+endif()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
