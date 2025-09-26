@@ -109,8 +109,28 @@ void b2PrepareMouseJoint( b2JointSim* base, b2StepContext* context )
 
 	joint->linearSoftness = b2MakeSoft( joint->hertz, joint->dampingRatio, context->h );
 
-	float angularHertz = 0.5f;
-	float angularDampingRatio = 0.1f;
+    //
+    // original Box2D numbers
+    //
+    // mallet revolves around your finger
+    //
+//    float angularHertz = 0.5f;
+//    float angularDampingRatio = 0.1f;
+
+    //
+    // new numbers
+    //
+    // mallet stays oriented
+    //
+//    float angularHertz = 10.0f;
+//    float angularDampingRatio = 1.0f;
+
+    //
+    // nice mix
+    //
+    float angularHertz = 0.5f;
+    float angularDampingRatio = 0.9f;
+
 	joint->angularSoftness = b2MakeSoft( angularHertz, angularDampingRatio, context->h );
 
 	b2Vec2 rA = joint->frameA.p;
