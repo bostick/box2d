@@ -20,7 +20,11 @@ b2WorldDef b2DefaultWorldDef( void )
 	def.contactDampingRatio = 10.0f;
 
 	// 400 meters per second, faster than the speed of sound
+    //
+    // adjust this as needed
+    //
 	def.maximumLinearSpeed = 400.0f * lengthUnits;
+
 	def.enableSleep = true;
 	def.enableContinuous = true;
 	def.internalValue = B2_SECRET_COOKIE;
