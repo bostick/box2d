@@ -58,6 +58,8 @@ set(BOX2D_SOURCE_FILES
 	types.c
 	weld_joint.c
 	wheel_joint.c
+
+	logging.cpp
 )
 
 set(BOX2D_API_FILES
@@ -115,6 +117,19 @@ if (BOX2D_PROFILE)
 
 	target_link_libraries(box2d PUBLIC TracyClient)
 endif()
+
+
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Android")
+
+target_link_libraries(box2d
+    PRIVATE
+        log
+)
+
+endif()
+
+
 
 if (BOX2D_VALIDATE)
 	message(STATUS "Box2D validation ON")	
