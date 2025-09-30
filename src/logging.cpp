@@ -31,54 +31,36 @@
 #define TAG "logging"
 
 
-void b2LogFatalV(const char *tag, const char *fmt, va_list args);
-void b2LogErrorV(const char *tag, const char *fmt, va_list args);
-void b2LogWarnV(const char *tag, const char *fmt, va_list args);
-void b2LogInfoV(const char *tag, const char *fmt, va_list args);
-void b2LogDebugV(const char *tag, const char *fmt, va_list args);
-void b2LogTraceV(const char *tag, const char *fmt, va_list args);
+//void b2LogFatalV(const char *tag, const char *fmt, va_list args);
+//void b2LogErrorV(const char *tag, const char *fmt, va_list args);
+//void b2LogWarnV(const char *tag, const char *fmt, va_list args);
+//void b2LogInfoV(const char *tag, const char *fmt, va_list args);
+//void b2LogDebugV(const char *tag, const char *fmt, va_list args);
+//void b2LogTraceV(const char *tag, const char *fmt, va_list args);
 
 
 static void b2LogFatal(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogFatalV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_FATAL, tag, "%s", fmt);
 }
 
 static void b2LogError(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogErrorV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_ERROR, tag, "%s", fmt);
 }
 
 static void b2LogWarn(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogWarnV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_WARN, tag, "%s", fmt);
 }
 
 static void b2LogInfo(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogInfoV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_INFO, tag, "%s", fmt);
 }
 
 static void b2LogDebug(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogDebugV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_DEBUG, tag, "%s", fmt);
 }
 
 static void b2LogTrace(const char *tag, const char *fmt) {
-    va_list args;
-//    va_start(args, fmt);
-    b2LogTraceV(tag, fmt, args);
-//    va_end(args);
+    __android_log_print(ANDROID_LOG_VERBOSE, tag, "%s", fmt);
 }
 
 static void b2LogNull(const char *tag, const char *fmt) {
@@ -91,77 +73,77 @@ static void b2LogNull(const char *tag, const char *fmt) {
 // define the various LogXXXV
 //
 
-#if IS_PLATFORM_ANDROID
+//#if IS_PLATFORM_ANDROID
+//
+//void b2LogFatalV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_FATAL, tag, fmt, args);
+//}
+//
+//void b2LogErrorV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_ERROR, tag, fmt, args);
+//}
+//
+//void b2LogWarnV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_WARN, tag, fmt, args);
+//}
+//
+//void b2LogInfoV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_INFO, tag, fmt, args);
+//}
+//
+//void b2LogDebugV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_DEBUG, tag, fmt, args);
+//}
+//
+//void b2LogTraceV(const char *tag, const char *fmt, va_list args) {
+//    __android_log_vprint(ANDROID_LOG_VERBOSE, tag, fmt, args);
+//}
+//
+//#else
+//
+//void b2LogFatalV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//void b2LogErrorV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//void b2LogWarnV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//void b2LogInfoV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//void b2LogDebugV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//void b2LogTraceV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    std::vfprintf(stderr, fmt, args);
+//    std::fflush(stderr);
+//}
+//
+//#endif // IS_PLATFORM_ANDROID
 
-void b2LogFatalV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_FATAL, tag, fmt, args);
-}
-
-void b2LogErrorV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_ERROR, tag, fmt, args);
-}
-
-void b2LogWarnV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_WARN, tag, fmt, args);
-}
-
-void b2LogInfoV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_INFO, tag, fmt, args);
-}
-
-void b2LogDebugV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_DEBUG, tag, fmt, args);
-}
-
-void b2LogTraceV(const char *tag, const char *fmt, va_list args) {
-    __android_log_vprint(ANDROID_LOG_VERBOSE, tag, fmt, args);
-}
-
-#else
-
-void b2LogFatalV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-void b2LogErrorV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-void b2LogWarnV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-void b2LogInfoV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-void b2LogDebugV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-void b2LogTraceV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    std::vfprintf(stderr, fmt, args);
-    std::fflush(stderr);
-}
-
-#endif // IS_PLATFORM_ANDROID
-
-static void b2LogNullV(const char *tag, const char *fmt, va_list args) {
-    (void)tag;
-    (void)fmt;
-    (void)args;
-}
+//static void b2LogNullV(const char *tag, const char *fmt, va_list args) {
+//    (void)tag;
+//    (void)fmt;
+//    (void)args;
+//}
 
 
 //
