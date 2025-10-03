@@ -88,9 +88,9 @@ set(CMAKE_DEBUG_POSTFIX "d")
 
 # Box2D uses C17 for _Static_assert and anonymous unions
 set_target_properties(box2d PROPERTIES
-	C_STANDARD 17
+	C_STANDARD 23
     C_STANDARD_REQUIRED YES
-    C_EXTENSIONS YES
+    C_EXTENSIONS NO
     VERSION ${PROJECT_VERSION}
     SOVERSION ${PROJECT_VERSION_MAJOR}
 	DEBUG_POSTFIX ${CMAKE_DEBUG_POSTFIX}
@@ -190,7 +190,7 @@ elseif (EMSCRIPTEN)
 	endif()
 elseif (UNIX)
 	message(STATUS "Box2D using Unix")
-	target_compile_options(box2d PRIVATE -Wmissing-prototypes -Wall -Wextra -pedantic -Wno-unused-value)
+	target_compile_options(box2d PRIVATE -Wmissing-prototypes -Wall -Wextra -pedantic -Wno-unused-value -Wno-gnu-zero-variadic-macro-arguments)
 	if ("${CMAKE_HOST_SYSTEM_PROCESSOR}" STREQUAL "aarch64")
 		# raspberry pi
 		# -mfpu=neon
