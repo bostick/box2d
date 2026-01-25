@@ -5,6 +5,10 @@
 
 #include <float.h>
 
+
+#define TAG "math_functions"
+
+
 _Static_assert( sizeof( int32_t ) == sizeof( int ), "Box2D expects int32_t and int to be the same" );
 
 bool b2IsValidFloat( float a )
@@ -39,15 +43,29 @@ bool b2IsValidVec2( b2Vec2 v )
 
 bool b2IsValidRotation( b2Rot q )
 {
-	if ( isnan( q.s ) || isnan( q.c ) )
+	if ( isnan( q.s ) )
 	{
+        LOGD("b2IsValidRotation: isnan( q.s ): %f", q.s);
 		return false;
 	}
 
-	if ( isinf( q.s ) || isinf( q.c ) )
+    if ( isnan( q.c ) )
+    {
+        LOGD("b2IsValidRotation: isnan( q.c ): %f", q.c);
+        return false;
+    }
+
+	if ( isinf( q.s ) )
 	{
+        LOGD("b2IsValidRotation: isinf( q.s ): %f", q.s);
 		return false;
 	}
+
+    if ( isinf( q.c ) )
+    {
+        LOGD("b2IsValidRotation: isinf( q.c ): %f", q.c);
+        return false;
+    }
 
 	return b2IsNormalizedRot( q );
 }

@@ -1,9 +1,14 @@
 // SPDX-FileCopyrightText: 2023 Erin Catto
 // SPDX-License-Identifier: MIT
 
+#undef NDEBUG
+
 #include "core.h"
 
 #include "box2d/math_functions.h"
+
+#include "common/logging.h"
+#include "common/assert.h"
 
 #if defined( B2_COMPILER_MSVC )
 #define _CRTDBG_MAP_ALLOC
@@ -32,6 +37,10 @@
 
 #include "atomic.h"
 
+
+#define TAG "core"
+
+
 // This allows the user to change the length units at runtime
 static float b2_lengthUnitsPerMeter = 1.0f;
 
@@ -48,8 +57,10 @@ float b2GetLengthUnitsPerMeter( void )
 
 static int b2DefaultAssertFcn( const char* condition, const char* fileName, int lineNumber )
 {
-	fprintf( stderr, "BOX2D ASSERTION: %s, %s, line %d\n", condition, fileName, lineNumber );
-	fflush( stderr );
+	(void)fileName;
+	(void)lineNumber;
+
+	ASSERT(condition);
 
 	// return non-zero to break to debugger
 	return 1;
@@ -77,7 +88,7 @@ int b2InternalAssert( const char* condition, const char* fileName, int lineNumbe
 
 static void b2DefaultLogFcn( const char* message )
 {
-	printf( "Box2D: %s\n", message );
+	LOGI("Box2D: %s", message);
 }
 
 static b2LogFcn* b2LogHandler = b2DefaultLogFcn;
