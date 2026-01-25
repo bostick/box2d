@@ -5,6 +5,8 @@
 
 #include "base.h"
 
+#include "common/logging.h"
+
 #include <float.h>
 #include <math.h>
 #include <stdbool.h>
@@ -393,13 +395,23 @@ B2_INLINE b2Rot b2MakeRotFromUnitVector( b2Vec2 unitVector )
 /// Compute the rotation between two unit vectors
 B2_API b2Rot b2ComputeRotationBetweenUnitVectors( b2Vec2 v1, b2Vec2 v2 );
 
+#define TAG "math_functions"
+
 /// Is this rotation normalized?
 B2_INLINE bool b2IsNormalizedRot( b2Rot q )
 {
 	// larger tolerance due to failure on mingw 32-bit
 	float qq = q.s * q.s + q.c * q.c;
-	return 1.0f - 0.0006f < qq && qq < 1.0f + 0.0006f;
+	bool res = 1.0f - 0.0006f < qq && qq < 1.0f + 0.0006f;
+    if (res) {
+        return res;
+    } else {
+        LOGD("b2IsNormalizedRot is returning FALSE with this rotation: { %f, %f }: %f", q.c, q.s, qq);
+        return res;
+    }
 }
+
+#undef TAG
 
 /// Get the inverse of a rotation
 B2_INLINE b2Rot b2InvertRot( b2Rot a )
