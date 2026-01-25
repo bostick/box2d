@@ -7,7 +7,11 @@
 #include "box2d/collision.h"
 #include "box2d/math_functions.h"
 
+#include "common/logging.h"
+
 #include <float.h>
+
+#define TAG "hull"
 
 // quickhull recursion
 static b2Hull b2RecurseHull( b2Vec2 p1, b2Vec2 p2, b2Vec2* ps, int count )
@@ -91,7 +95,7 @@ b2Hull b2ComputeHull( const b2Vec2* points, int count )
 
 	if ( count < 3 || count > B2_MAX_POLYGON_VERTICES )
 	{
-		// check your data
+        LOGE("check your data");
 		return hull;
 	}
 
@@ -133,7 +137,7 @@ b2Hull b2ComputeHull( const b2Vec2* points, int count )
 
 	if ( n < 3 )
 	{
-		// all points very close together, check your data and check your scale
+        LOGE("all points very close together, check your data and check your scale");
 		return hull;
 	}
 
@@ -203,7 +207,7 @@ b2Hull b2ComputeHull( const b2Vec2* points, int count )
 
 	if ( hull1.count == 0 && hull2.count == 0 )
 	{
-		// all points collinear
+        LOGE("all points collinear");
 		return hull;
 	}
 
@@ -263,7 +267,7 @@ b2Hull b2ComputeHull( const b2Vec2* points, int count )
 
 	if ( hull.count < 3 )
 	{
-		// all points collinear, shouldn't be reached since this was validated above
+        LOGE("all points collinear, shouldn't be reached since this was validated above");
 		hull.count = 0;
 	}
 

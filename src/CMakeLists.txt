@@ -115,6 +115,26 @@ if (BOX2D_PROFILE)
 	target_link_libraries(box2d PUBLIC TracyClient)
 endif()
 
+
+FetchContent_Declare(common
+    GIT_REPOSITORY
+        https://github.com/bostick/common.git
+    GIT_TAG
+        main
+    GIT_SHALLOW 1
+    GIT_PROGRESS 1
+)
+FetchContent_MakeAvailable(common)
+
+
+
+target_link_libraries(box2d
+    PRIVATE
+        common-lib
+)
+
+
+
 if (BOX2D_VALIDATE)
 	message(STATUS "Box2D validation ON")	
 	target_compile_definitions(box2d PRIVATE BOX2D_VALIDATE)
