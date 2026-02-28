@@ -1514,12 +1514,12 @@ static int b2PartitionMid( int* indices, b2Vec2* centers, int count )
 			while ( i1 < i2 && centers[i1].x < pivot )
 			{
 				i1 += 1;
-			};
+			}
 
 			while ( i1 < i2 && centers[i2 - 1].x >= pivot )
 			{
 				i2 -= 1;
-			};
+			}
 
 			if ( i1 < i2 )
 			{
@@ -1551,12 +1551,12 @@ static int b2PartitionMid( int* indices, b2Vec2* centers, int count )
 			while ( i1 < i2 && centers[i1].y < pivot )
 			{
 				i1 += 1;
-			};
+			}
 
 			while ( i1 < i2 && centers[i2 - 1].y >= pivot )
 			{
 				i2 -= 1;
-			};
+			}
 
 			if ( i1 < i2 )
 			{
