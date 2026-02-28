@@ -30,8 +30,8 @@
 
 #else
 
-#define b2TracyCAlloc( ptr, size )
-#define b2TracyCFree( ptr )
+#define b2TracyCAlloc( ptr, size ) do {} while (false)
+#define b2TracyCFree( ptr ) do {} while (false)
 
 #endif
 

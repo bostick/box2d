@@ -95,9 +95,9 @@
 	#define b2TracyCFrame TracyCFrameMark
 #else
 	#define b2TracyCZoneC( ctx, color, active )
-	#define b2TracyCZoneNC( ctx, name, color, active )
-	#define b2TracyCZoneEnd( ctx )
-	#define b2TracyCFrame
+	#define b2TracyCZoneNC( ctx, name, color, active ) do {} while (false)
+	#define b2TracyCZoneEnd( ctx ) do {} while (false)
+	#define b2TracyCFrame do {} while (false)
 #endif
 
 // clang-format on
