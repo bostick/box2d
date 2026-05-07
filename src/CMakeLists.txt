@@ -118,12 +118,14 @@ endif()
 
 
 FetchContent_Declare(common
-    GIT_REPOSITORY
-        https://github.com/bostick/common.git
-    GIT_TAG
-        b0.5
-    GIT_SHALLOW 1
-    GIT_PROGRESS 1
+    # GIT_REPOSITORY
+    #     https://github.com/bostick/common.git
+    # GIT_TAG
+    #     b0.5
+    # GIT_SHALLOW 1
+    # GIT_PROGRESS 1
+    SOURCE_DIR
+    	${LOCAL_COMMON_DIR}
 )
 FetchContent_MakeAvailable(common)
 
