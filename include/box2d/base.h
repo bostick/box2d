@@ -60,7 +60,7 @@ typedef void* b2AllocFcn( unsigned int size, int alignment );
 typedef void b2FreeFcn( void* mem, unsigned int size );
 
 /// Prototype for the user assert callback. Return 0 to skip the debugger break.
-typedef int b2AssertFcn( const char* condition, const char* fileName, int lineNumber );
+typedef int b2AssertFcn( const char* condition );
 
 /// Prototype for user log callback. Used to log warnings.
 typedef void b2LogFcn( const char* message );
@@ -113,9 +113,9 @@ B2_API b2Version b2GetVersion( void );
 #endif
 
 #if !defined( NDEBUG ) || defined( B2_ENABLE_ASSERT )
-B2_API int b2InternalAssert( const char* condition, const char* fileName, int lineNumber );
+B2_API int b2InternalAssert( const char* condition );
 #define B2_ASSERT( condition )                                                                                                   \
-	( (void)( ( !!( condition ) ) || ( b2InternalAssert( #condition, __FILE__, (int)( __LINE__ ) ), 0 ) ) )
+	( (void)( ( !!( condition ) ) || ( b2InternalAssert( #condition ), 0 ) ) )
 #else
 #define B2_ASSERT( ... ) ( (void)0 )
 #endif
