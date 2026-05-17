@@ -1,6 +1,10 @@
 // SPDX-FileCopyrightText: 2023 Erin Catto
 // SPDX-License-Identifier: MIT
 
+//
+// we want to undefine NDEBUG for common/assert.h
+// core.h also depends on NDEBUG, so undefine here
+//
 #undef NDEBUG
 
 #include "core.h"
@@ -55,11 +59,8 @@ float b2GetLengthUnitsPerMeter( void )
 	return b2_lengthUnitsPerMeter;
 }
 
-static int b2DefaultAssertFcn( const char* condition, const char* fileName, int lineNumber )
+static int b2DefaultAssertFcn( const char* condition )
 {
-	(void)fileName;
-	(void)lineNumber;
-
 	ASSERT(condition);
 
 	// return non-zero to break to debugger
@@ -75,9 +76,9 @@ void b2SetAssertFcn( b2AssertFcn* assertFcn )
 }
 
 #if !defined( NDEBUG ) || defined( B2_ENABLE_ASSERT )
-int b2InternalAssert( const char* condition, const char* fileName, int lineNumber )
+int b2InternalAssert( const char* condition )
 {
-	int result = b2AssertHandler( condition, fileName, lineNumber );
+	int result = b2AssertHandler( condition );
 	if ( result )
 	{
 		B2_BREAKPOINT;
