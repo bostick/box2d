@@ -126,7 +126,7 @@ FetchContent_Declare(common
     GIT_REPOSITORY
         https://github.com/bostick/common.git
     GIT_TAG
-        main
+        b0.8
     GIT_SHALLOW 1
     GIT_PROGRESS 1
 )
