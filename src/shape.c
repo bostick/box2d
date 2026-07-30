@@ -15,7 +15,13 @@
 
 #include "box2d/box2d.h"
 
+#include "common/logging.h"
+
 #include <stddef.h>
+
+
+#define TAG "shape"
+
 
 static b2Shape* b2GetShape( b2World* world, b2ShapeId shapeId )
 {
@@ -257,6 +263,7 @@ b2ShapeId b2CreateCapsuleShape( b2BodyId bodyId, const b2ShapeDef* def, const b2
 	float lengthSqr = b2DistanceSquared( capsule->center1, capsule->center2 );
 	if ( lengthSqr <= B2_LINEAR_SLOP * B2_LINEAR_SLOP )
 	{
+        LOGE("distance between capsule centers is lte B2_LINEAR_SLOP: center1: (%f %f) center2: (%f %f) length: %f B2_LINEAR_SLOP: %f ", capsule->center1.x, capsule->center1.y, capsule->center2.x, capsule->center2.y, sqrtf(lengthSqr), B2_LINEAR_SLOP);
 		return b2_nullShapeId;
 	}
 
