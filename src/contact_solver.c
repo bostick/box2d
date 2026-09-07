@@ -670,7 +670,12 @@ static inline b2FloatW b2MulW( b2FloatW a, b2FloatW b )
 
 static inline b2FloatW b2DivW( b2FloatW a, b2FloatW b )
 {
-	return vdivq_f32( a, b );
+#if defined( _M_ARM64 ) || defined( __aarch64__ )
+    return vdivq_f32( a, b );
+#else
+    float32x4_t recip = vrecpeq_f32(b);
+    return vmulq_f32(a, recip);
+#endif
 }
 
 static inline b2FloatW b2MulAddW( b2FloatW a, b2FloatW b, b2FloatW c )
